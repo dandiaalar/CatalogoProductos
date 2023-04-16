@@ -32,6 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/product_title"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
             android:textColorHint="#757575"
             tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>

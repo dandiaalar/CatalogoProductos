@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.catalogodeproductos.R;
 import com.example.catalogodeproductos.databinding.ToolbarBinding;
-import com.example.catalogodeproductos.presenter.BasePresenter;
+import com.example.catalogodeproductos.presenter.implementations.BasePresenter;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
