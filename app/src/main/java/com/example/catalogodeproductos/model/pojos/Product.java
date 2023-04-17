@@ -4,16 +4,16 @@ public class Product {
 
     private String key;
     private String title;
-    private String price;
-    private String location;
-    private String urlImage;
+    private String salePrice;
+    private String sellernames;
+    private String thumbnailImage;
 
-    public Product(String key, String title, String price, String location, String urlImage) {
+    public Product(String key, String title, String salePrice, String sellernames, String thumbnailImage) {
         this.key = key;
         this.title = title;
-        this.price = price;
-        this.location = location;
-        this.urlImage = urlImage;
+        this.salePrice = salePrice;
+        this.sellernames = sellernames;
+        this.thumbnailImage = thumbnailImage;
     }
 
     public String getKey() {
@@ -32,27 +32,27 @@ public class Product {
         this.title = title;
     }
 
-    public String getPrice() {
-        return price;
+    public String getSalePrice() {
+        return salePrice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setSalePrice(String salePrice) {
+        this.salePrice = salePrice;
     }
 
-    public String getLocation() {
-        return location;
+    public String getSellernames() {
+        return sellernames;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setSellernames(String sellernames) {
+        this.sellernames = sellernames;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getThumbnailImage() {
+        return thumbnailImage;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setThumbnailImage(String thumbnailImage) {
+        this.thumbnailImage = thumbnailImage;
     }
 }

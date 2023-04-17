@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,11 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.catalogodeproductos.databinding.ActMainBinding;
 import com.example.catalogodeproductos.model.management.AppDataBase;
 import com.example.catalogodeproductos.model.pojos.Criteria;
+import com.example.catalogodeproductos.model.pojos.Product;
 import com.example.catalogodeproductos.presenter.callbacks.MainCallback;
 import com.example.catalogodeproductos.presenter.implementations.BasePresenter;
 import com.example.catalogodeproductos.presenter.implementations.MainPresenter;
 import com.example.catalogodeproductos.support.MessageUtilities;
 import com.example.catalogodeproductos.view.adapters.CriteriaAdapter;
+import com.example.catalogodeproductos.view.adapters.ProductAdapter;
 
 import java.util.Calendar;
 import java.util.List;
@@ -30,9 +33,11 @@ public class MainActivity extends BaseActivity implements MainCallback {
     private Dialog loading;
 
     private List<Criteria> criteriaList;
+    private List<Product> products;
     private Calendar calendar;
 
     private CriteriaAdapter criteriaAdapter;
+    private ProductAdapter productAdapter;
     public static void launch(Context context){
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
@@ -55,8 +60,11 @@ public class MainActivity extends BaseActivity implements MainCallback {
         binding.mainSearch.setOnClickListener(v -> {
             if (!Objects.requireNonNull(binding.mainProduct.getText()).toString().isEmpty()){
                 String criteria = binding.mainProduct.getText().toString().trim();
-                insertCriteria(criteria);
-                binding.mainProduct.setText("");
+
+                presenter.getProducts(criteria);
+
+                //insertCriteria(criteria);
+                //binding.mainProduct.setText("");
 
                 getCriteriaList();
             }
@@ -80,6 +88,12 @@ public class MainActivity extends BaseActivity implements MainCallback {
         binding.mainSearchRecycler.setHasFixedSize(true);
         binding.mainSearchRecycler.setAdapter(criteriaAdapter);
 
+        productAdapter = new ProductAdapter(this);
+
+        binding.mainProductRecycler.setLayoutManager(new LinearLayoutManager(this));
+        binding.mainProductRecycler.setItemAnimator(new DefaultItemAnimator());
+        binding.mainProductRecycler.setHasFixedSize(true);
+        binding.mainProductRecycler.setAdapter(productAdapter);
 
     }
 
@@ -111,8 +125,15 @@ public class MainActivity extends BaseActivity implements MainCallback {
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(List<Product> products) {
         if (loading != null) loading.dismiss();
+
+        if (products.size() > 0){
+            productAdapter.update(products);
+            binding.mainProductRecycler.setVisibility(View.VISIBLE);
+        }else{
+            binding.mainProductRecycler.setVisibility(View.GONE);
+        }
     }
 
     @Override
