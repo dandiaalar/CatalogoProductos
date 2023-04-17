@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.catalogodeproductos.databinding.ActSplashBinding;
+import com.example.catalogodeproductos.view.activities.BaseActivity;
+import com.example.catalogodeproductos.view.activities.MainActivity;
 
 public class SplashActivity extends BaseActivity {
 

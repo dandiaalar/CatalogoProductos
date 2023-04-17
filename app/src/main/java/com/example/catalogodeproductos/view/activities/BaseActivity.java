@@ -1,4 +1,4 @@
-package com.example.catalogodeproductos.view;
+package com.example.catalogodeproductos.view.activities;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;

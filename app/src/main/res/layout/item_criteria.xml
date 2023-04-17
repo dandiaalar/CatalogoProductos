@@ -18,11 +18,11 @@
 
         <TextView
             android:id="@+id/criteria_desc"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:textAlignment="center"
             android:textAllCaps="true"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/criteria_delete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/criteria_delete"
@@ -37,6 +37,7 @@
             android:layout_marginEnd="8dp"
             android:background="@null"
             android:contentDescription="@string/description"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/criteria_desc"

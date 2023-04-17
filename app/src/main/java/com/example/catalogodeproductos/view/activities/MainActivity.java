@@ -1,9 +1,12 @@
-package com.example.catalogodeproductos.view;
+package com.example.catalogodeproductos.view.activities;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.catalogodeproductos.databinding.ActMainBinding;
 import com.example.catalogodeproductos.model.management.AppDataBase;
@@ -12,6 +15,7 @@ import com.example.catalogodeproductos.presenter.callbacks.MainCallback;
 import com.example.catalogodeproductos.presenter.implementations.BasePresenter;
 import com.example.catalogodeproductos.presenter.implementations.MainPresenter;
 import com.example.catalogodeproductos.support.MessageUtilities;
+import com.example.catalogodeproductos.view.adapters.CriteriaAdapter;
 
 import java.util.Calendar;
 import java.util.List;
@@ -27,6 +31,8 @@ public class MainActivity extends BaseActivity implements MainCallback {
 
     private List<Criteria> criteriaList;
     private Calendar calendar;
+
+    private CriteriaAdapter criteriaAdapter;
     public static void launch(Context context){
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
@@ -43,14 +49,38 @@ public class MainActivity extends BaseActivity implements MainCallback {
 
         // SETUP
         setupDatabase();
+        initRecycler();
+        getCriteriaList();
 
         binding.mainSearch.setOnClickListener(v -> {
             if (!Objects.requireNonNull(binding.mainProduct.getText()).toString().isEmpty()){
                 String criteria = binding.mainProduct.getText().toString().trim();
                 insertCriteria(criteria);
                 binding.mainProduct.setText("");
+
+                getCriteriaList();
             }
         });
+    }
+
+    private void getCriteriaList() {
+
+        criteriaList = dataBase.daoCriteria().getCriteriaList();
+
+        if (criteriaList.size() > 0){
+            criteriaAdapter.update(criteriaList);
+        }
+    }
+
+    private void initRecycler() {
+        criteriaAdapter = new CriteriaAdapter(this);
+
+        binding.mainSearchRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.mainSearchRecycler.setItemAnimator(new DefaultItemAnimator());
+        binding.mainSearchRecycler.setHasFixedSize(true);
+        binding.mainSearchRecycler.setAdapter(criteriaAdapter);
+
+
     }
 
     @Override

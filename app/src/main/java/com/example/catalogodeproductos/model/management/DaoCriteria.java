@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface DaoCriteria {
 
-    @Query("SELECT * FROM criteria")
+    @Query("SELECT * FROM criteria ORDER BY date DESC")
     List<Criteria> getCriteriaList();
 
     @Insert
