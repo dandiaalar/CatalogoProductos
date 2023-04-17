@@ -21,6 +21,4 @@ public interface RetrofitApiService {
     @GET(Constants.CRITERIA_URL)
     Call<List<Product>> getProducts(@Header("apikey4") String header, @Query("s") String criterio, @Query("adb8204d-d574-4394-8c1a-53226a40876e") String type);
 
-    @GET("planets")
-    Call<List<Product>> getProducts(@Query("planets") int num);
 }

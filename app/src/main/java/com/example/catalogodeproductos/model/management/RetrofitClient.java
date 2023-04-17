@@ -13,25 +13,9 @@ public class RetrofitClient {
 
     public static RetrofitApiService getApiService() {
 
-        /*
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        * */
-
-        /*
-        private static Retrofit.Builder builder
-        = new Retrofit.Builder()
-          .baseUrl("https://api.domain.com/")
-          .addConverterFactory(GsonConverterFactory.create())
-          .client(httpClient.build());
-        * */
-
         HttpLoggingInterceptor interceptor  = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-
 
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
