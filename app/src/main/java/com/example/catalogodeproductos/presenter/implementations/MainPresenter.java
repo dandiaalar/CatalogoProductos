@@ -65,14 +65,15 @@ public class MainPresenter extends BasePresenter {
 
     private String getProductsByCriteria(String criteria){
 
-        Call<List<Product>> call = apiService.getProducts(criteria);
+        //Call<List<Product>> call = apiService.getProducts("adb8204d-d574-4394-8c1a-53226a40876e", criteria, "json");
+        Call<List<Product>> call = apiService.getProducts(3);
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
 
                 if (!response.isSuccessful()){
-                    result = "HTTP code" + response.code();
+                    result = "HTTP code: " + response.code();
                     callback.onError(result);
                     return;
                 }

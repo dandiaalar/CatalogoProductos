@@ -63,8 +63,8 @@ public class MainActivity extends BaseActivity implements MainCallback {
 
                 presenter.getProducts(criteria);
 
-                //insertCriteria(criteria);
-                //binding.mainProduct.setText("");
+                insertCriteria(criteria);
+                binding.mainProduct.setText("");
 
                 getCriteriaList();
             }
